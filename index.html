@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Moonie Tales 🌙 Story Studio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🌙 Moonie Tales</h1>
+  <p>Turn a story, your pictures and your recordings into a bedtime video. Everything stays in your browser.</p>
+  <p class="flow">Write the story → Add pictures → Add audio → Preview → Export</p>
+</header>
+<main>
+  <div class="col">
+    <section class="card">
+      <h2>Story</h2>
+      <input id="title" placeholder="Story title">
+      <textarea id="story" rows="7" placeholder="Paste your whole story here…"></textarea>
+      <div class="row">
+        <select id="splitMode"><option value="sentence">Split by sentences</option><option value="paragraph">Split by paragraphs</option></select>
+        <button id="splitBtn">Split into scenes</button>
+        <button id="addBtn" class="alt">Add blank scene</button>
+      </div>
+      <div class="row">
+        <label><input type="checkbox" id="titleCard" checked> Title card</label>
+        <label><input type="checkbox" id="endCard" checked> End card</label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Pictures and characters</h2>
+      <p class="hint">Upload each picture once, then pick it for as many scenes as you like. Uploading a file with the same name replaces it.</p>
+      <input type="file" id="imgs" accept="image/*" multiple>
+      <div id="lib" class="lib"></div>
+    </section>
+
+    <section class="card">
+      <h2>Scenes</h2>
+      <div id="scenes"></div>
+    </section>
+
+    <section class="card">
+      <h2>Audio</h2>
+      <p class="hint">Use your own recordings. Start times are in seconds from the start of the video (a title card lasts 3 seconds).</p>
+      <div id="audio"></div>
+      <button id="fitBtn" class="alt">Match scene lengths to narration</button>
+    </section>
+  </div>
+
+  <aside class="card sticky">
+    <h2>Preview and export</h2>
+    <canvas id="cv" width="720" height="1280"></canvas>
+    <progress id="prog" value="0" max="1"></progress>
+    <p id="status" class="hint">Ready.</p>
+    <div class="row">
+      <button id="playBtn">▶ Play preview</button>
+      <button id="stopBtn" class="alt">■ Stop</button>
+    </div>
+    <label>Size
+      <select id="res"><option value="720x1280">720 × 1280 (lighter)</option><option value="1080x1920">1080 × 1920 (full HD)</option></select>
+    </label>
+    <button id="expBtn" class="gold">Record and download video</button>
+    <p id="err" class="err" role="alert"></p>
+    <video id="out" controls playsinline hidden></video>
+    <a id="dlink" class="btnlink" hidden>Download video</a>
+    <p class="hint">Videos are recorded in real time at 30 FPS, so keep this tab open and visible until it finishes. Chrome, Edge and Firefox save WebM. Safari may save MP4. If your browser supports neither, recording is unavailable.</p>
+    <hr>
+    <div class="row">
+      <button id="save" class="alt">Save project (.json)</button>
+      <label class="btn alt">Load project<input type="file" id="load" accept=".json,application/json" hidden></label>
+    </div>
+    <p class="hint">Project files keep text, settings and file names, not the pictures or audio. After a refresh or a load, select those files again.</p>
+  </aside>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
